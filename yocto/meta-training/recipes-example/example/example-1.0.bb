@@ -7,8 +7,8 @@ DESCRIPTION = "training example S/W"
 SECTION = "training/example"
 LICENSE = "CLOSED"
 
-PROVIDES = "example"
-RPROVIDES_${PN} = "example"
+PROVIDES = "example-1.0"
+RPROVIDES_${PN} = "example-1.0"
 
 DEPENDS += ""
 RDEPENDS_${PN} += ""
@@ -19,6 +19,10 @@ SRC_URI += "file://example-1.0"
 
 # Make sure our source directory (for the build) matches the directory structure in the tarball
 S = "${WORKDIR}/example-1.0"
+
+TARGET_CC_ARCH += "${LDFLAGS}" 
+INSANE_SKIP_${PN} = "ldflags"
+INSANE_SKIP_${PN}-dev = "ldflags"
 
 show_var() {
 	echo "S : ${S}"
@@ -41,6 +45,19 @@ show_var() {
 #	exit 1
 }
 
+build_date() {
+	make -C ${S}/ \
+		IMAGE_ROOTFS="${D}" \
+		TARGET_PREFIX="${TARGET_PREFIX}" \
+		TARGET_CC="${CC}" \
+		TARGET_AR="${AR}" \
+		TMPDIR="${TMPDIR}" \
+		MACHINE="${MACHINE}" \
+		TARGET_SYS="${TARGET_SYS}" \
+		DATETIME="${DATEME}" \
+		BUILD_DATE
+}
+
 build_app() {
 	make -C ${S}/ \
 		IMAGE_ROOTFS="${D}" \
@@ -51,7 +68,7 @@ build_app() {
 		MACHINE="${MACHINE}" \
 		TARGET_SYS="${TARGET_SYS}" \
 		DATETIME="${DATEME}" \
-		install
+		all
 }
 
 do_configure() {
@@ -59,16 +76,16 @@ do_configure() {
 
 do_compile() {
 	show_var
+	build_date
 	build_app
 }
 
 do_install() {
-	if [ -f "${S}/example" ] ; then \
-		cp -f ${S}/example ${D}${bindir} ;\
+	if [ -f "${S}/example-1.0" ] ; then \
+		cp -f ${S}/example-1.0 ${D}${bindir} ;\
 	fi;
 }
 
 do_install[dirs] = "${D}${bindir}"
 
 FILES_${PN} = "${bindir}/*"
-

@@ -33,6 +33,8 @@
 #define USER_INPUT_KEY_INFO                  (0xE00EU)
 #define USER_INPUT_KEY_UP                    (0xE100U)
 #define USER_INPUT_KEY_DOWN                  (0xE101U)
+#define USER_INPUT_KEY_LEFT                  (0xE102U)
+#define USER_INPUT_KEY_RIGHT                 (0xE103U)
 #define USER_INPUT_KEY_NUMERIC_ZERO          (0xE300U)
 #define USER_INPUT_KEY_NUMERIC_ONE           (0xE301U)
 #define USER_INPUT_KEY_NUMERIC_TWO           (0xE302U)

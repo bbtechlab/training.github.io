@@ -1,17 +1,6 @@
 
-CURRDIR := $(shell pwd)
-LINUX_MACHINE := $(shell uname -m)
-TOOLCHAINDIR := ${TMPDIR}/sysroots/$(LINUX_MACHINE)-linux/usr/bin/$(TARGET_SYS)
-SYSROOTS := ${TMPDIR}/sysroots/$(MACHINE)/
-SYSROOTSINC := $(SYSROOTS)/usr/include
-SYSROOTSLIB := $(SYSROOTS)/usr/lib
-CONFIGFILE := $(SYSROOTSINC)/.config
-
--include $(CONFIGFILE)
--include $(SYSROOTSINC)/autoconf.h
-
-CC := $(TOOLCHAINDIR)/$(TARGET_CC)
-AR := $(TOOLCHAINDIR)/$(TARGET_AR)
+CC := $(TARGET_CC)
+AR := $(TARGET_AR)
 
 INC :=
 
@@ -26,17 +15,17 @@ CFLAGS += -DCONFIG_DEBUG
 endif
 
 LIBLIST-y :=
-LIBLIST-y += -ldl -lz -lstdc++
+LIBLIST-y += -ldl -lstdc++
 
 LDFLAGS := -Wl,--gc-sections   
 
 obj-y :=
 include main/Makefile
 
-install: BUILD_DATE 
+all: example-1.0
 
 
-example: ${obj-y}
+example-1.0: ${obj-y}
 	@$(CC) $(LDFLAGS) -Wl,--start-group $(LIBLIST-y) ${obj-y} -Wl,--end-group  -o $@
 
 clean:
@@ -53,8 +42,9 @@ BUILD_DATE: FORCE
 FORCE:
 
 %.o: %.c
+	@echo [Compiling ---------- $@]
 	$(CC) -c $< $(CFLAGS) $(INC) $(LDFLAGS) -o $@
 
-.PHONY: example
+.PHONY: example-1.0
 
 vpath %.c main/
