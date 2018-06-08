@@ -11,7 +11,7 @@
  * Compiler     : gcc
  *
  * Author       : Bamboo Do, dovanquyen.vn@gmail.com
- * Copyright (c) 2018, Bamboo Do - All rights reserved.
+ * Copyright (c) 2018, BBTECH Lab - All rights reserved.
  *
  * *************************************************************************************
  */
@@ -20,31 +20,46 @@
 /*******************************************************************/
 /* Start Including Header Files */
 #include <stdio.h>
+#include <stdarg.h>
+#include <stdlib.h>
 /* End Including Headers */
 
 /*******************************************************************/
 /****************************** define *****************************/
 /*******************************************************************/
 /* Start #define */
+/* Default color logs */
+#define BBLOG_DEFAULT_COLOR_NONE         	"\033[0m"   /* NONE */
+#define BBLOG_DEFAULT_COLOR_TRACE        	"\033[0m"   /* NONE */
+#define BBLOG_DEFAULT_COLOR_MSG          	"\033[0m"   /* NONE */
+#define BBLOG_DEFAULT_COLOR_DBG          	"\033[35m"  /* MAGENTA */
+#define BBLOG_DEFAULT_COLOR_WRN          	"\033[34m"  /* BLUE */
+#define BBLOG_DEFAULT_COLOR_ERR          	"\033[31m"  /* RED */
+#define BB_ERR(fmt, ...)    				fprintf(stdout, BBLOG_DEFAULT_COLOR_ERR fmt  BBLOG_DEFAULT_COLOR_NONE "",  ## __VA_ARGS__)
+#define BB_WRN(fmt, ...)    				fprintf(stdout, BBLOG_DEFAULT_COLOR_WRN fmt  BBLOG_DEFAULT_COLOR_NONE "", ## __VA_ARGS__)
+#define BB_DBG(fmt, ...)    				fprintf(stdout, BBLOG_DEFAULT_COLOR_DBG fmt  BBLOG_DEFAULT_COLOR_NONE "",  ## __VA_ARGS__)
+#define BB_MSG(fmt, ...)    				fprintf(stdout, BBLOG_DEFAULT_COLOR_MSG fmt  BBLOG_DEFAULT_COLOR_NONE "",  ## __VA_ARGS__)
+#define BB_TRACE(fmt, ...)  				fprintf(stdout, BBLOG_DEFAULT_COLOR_TRACE fmt  BBLOG_DEFAULT_COLOR_NONE "",  ## __VA_ARGS__)
+
 /* UserInput Key definitions. */
-#define USER_INPUT_KEY_SELECT                (0xE001U)
-#define USER_INPUT_KEY_HELP                  (0xE009U)
-#define USER_INPUT_KEY_CANCEL                (0xE00DU)
-#define USER_INPUT_KEY_INFO                  (0xE00EU)
-#define USER_INPUT_KEY_UP                    (0xE100U)
-#define USER_INPUT_KEY_DOWN                  (0xE101U)
-#define USER_INPUT_KEY_LEFT                  (0xE102U)
-#define USER_INPUT_KEY_RIGHT                 (0xE103U)
-#define USER_INPUT_KEY_NUMERIC_ZERO          (0xE300U)
-#define USER_INPUT_KEY_NUMERIC_ONE           (0xE301U)
-#define USER_INPUT_KEY_NUMERIC_TWO           (0xE302U)
-#define USER_INPUT_KEY_NUMERIC_THREE         (0xE303U)
-#define USER_INPUT_KEY_NUMERIC_FOUR          (0xE304U)
-#define USER_INPUT_KEY_NUMERIC_FIVE          (0xE305U)
-#define USER_INPUT_KEY_NUMERIC_SIX           (0xE306U)
-#define USER_INPUT_KEY_NUMERIC_SEVEN         (0xE307U)
-#define USER_INPUT_KEY_NUMERIC_EIGHT         (0xE308U)
-#define USER_INPUT_KEY_NUMERIC_NINE          (0xE309U)
+#define USER_INPUT_KEY_SELECT                (0x6f)
+#define USER_INPUT_KEY_HELP                  (0x6d)
+#define USER_INPUT_KEY_CANCEL                (0x78)
+#define USER_INPUT_KEY_INFO                  (0x69)
+#define USER_INPUT_KEY_UP                    (0x41)
+#define USER_INPUT_KEY_DOWN                  (0x42)
+#define USER_INPUT_KEY_LEFT                  (0x44)
+#define USER_INPUT_KEY_RIGHT                 (0x43)
+#define USER_INPUT_KEY_NUMERIC_ZERO          (0x30)
+#define USER_INPUT_KEY_NUMERIC_ONE           (0x31)
+#define USER_INPUT_KEY_NUMERIC_TWO           (0x32)
+#define USER_INPUT_KEY_NUMERIC_THREE         (0x33)
+#define USER_INPUT_KEY_NUMERIC_FOUR          (0x34)
+#define USER_INPUT_KEY_NUMERIC_FIVE          (0x35)
+#define USER_INPUT_KEY_NUMERIC_SIX           (0x36)
+#define USER_INPUT_KEY_NUMERIC_SEVEN         (0x37)
+#define USER_INPUT_KEY_NUMERIC_EIGHT         (0x38)
+#define USER_INPUT_KEY_NUMERIC_NINE          (0x39)
 
 /* End #define */
 
@@ -109,55 +124,59 @@ static int local_GetFromConsole(void)
 	unsigned char ch;
 
 	ch = local_Getch();
-	if( ch == 0x1b ) 	// Function Key Input
+	
+	if( (ch>='0') && (ch<='9') )
 	{
-		// read dummy 2nd byte
-		local_Getch();
-
-		// read  3rd byte
-		ch = local_Getch();
+		ret_code = USER_INPUT_KEY_NUMERIC_ZERO + ch - '0';
+	}
+	else
+	{
 		switch(ch)
 		{
-			case 0x41 :
+			case USER_INPUT_KEY_UP :
 				ret_code = USER_INPUT_KEY_UP;
+				BB_MSG("Up Key down!\n");
 				break;
 
 			case 0x42 :
 				ret_code = USER_INPUT_KEY_DOWN;
+				BB_MSG("Down Key down!\n");
 				break;
 
 			case 0x43 :
 				ret_code = USER_INPUT_KEY_RIGHT;
+				BB_MSG("Right Key down!\n");
 				break;
 
 			case 0x44 :
 				ret_code = USER_INPUT_KEY_LEFT;
+				BB_MSG("Left Key down!\n");
 				break;
 				
 			case 0x6f : 	// o
 				ret_code = USER_INPUT_KEY_SELECT;
+				BB_MSG("Select Key down!\n");
 				break;
 
 			case 0x69 : 	// i
 				ret_code = USER_INPUT_KEY_INFO;
+				BB_MSG("Info Key down!\n");
 				break;
 				
 			case 0x6d : 	// m
 				ret_code = USER_INPUT_KEY_HELP;
+				BB_MSG("Help Key down!\n");
 				break;
 				
 			case 0x78 : 	// x
 				ret_code = USER_INPUT_KEY_CANCEL;
+				BB_MSG("Cancel Key down!\n");
 				break;
 			default :
-				printf( " unknown key!\n");
+				BB_WRN( " Unknown Key!\n");
 		}
 	}
-	else if( (ch>='0') && (ch<='9') )
-	{
-		ret_code = USER_INPUT_KEY_NUMERIC_ZERO + ch - '0';
-	}
-
+	
 	return ret_code;
 }
 
@@ -166,7 +185,7 @@ static int local_TerminalKeyInput()
 	int no;
 	static int end_flg;
 		
-	printf("Start terminal input key program.\n");
+	BB_MSG("Start terminal input key program.\n");
 
 	end_flg = 0;
 	while (end_flg == 0)
@@ -197,7 +216,7 @@ static int local_TerminalKeyInput()
 		}
 	}
 	
-	printf("End program.\n");
+	BB_MSG("End program.\n");
 
 	return(0);
 }
@@ -205,11 +224,11 @@ static int local_TerminalKeyInput()
 #define ___GLOBAL_FUNCTION_________________
 int main(int argc, char *argv[])
 {
-	printf("\n\n\n ================================================\n");
-	printf("   Start Example test application !!\n");
-	printf("   Build date : %s \n", g_strAppBuildDate);
-	printf("   Build user : %s \n", g_strAppBuildUser);
-	printf("================================================\n\n\n");
+	BB_DBG("\n\n\n ================================================\n");
+	BB_DBG("   Start Example-1.0 test application !!\n");
+	BB_DBG("   Build date : %s \n", g_strAppBuildDate);
+	BB_DBG("   Build user : %s \n", g_strAppBuildUser);
+	BB_DBG("================================================\n\n\n");
 	
 	local_TerminalKeyInput();
 	
