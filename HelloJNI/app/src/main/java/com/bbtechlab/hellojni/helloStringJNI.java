@@ -1,4 +1,4 @@
-package com.humaxdigital.hellojni;
+package com.bbtechlab.hellojni;
 
 public class helloStringJNI {
     static {

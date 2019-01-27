@@ -1,4 +1,4 @@
-package com.humaxdigital.hellojni;
+package com.bbtechlab.hellojni;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

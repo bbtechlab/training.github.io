@@ -1,4 +1,4 @@
-package com.humaxdigital.hellojni;
+package com.bbtechlab.hellojni;
 
 import org.junit.Test;
 

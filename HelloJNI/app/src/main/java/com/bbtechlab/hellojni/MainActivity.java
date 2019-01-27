@@ -1,4 +1,4 @@
-package com.humaxdigital.hellojni;
+package com.bbtechlab.hellojni;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
