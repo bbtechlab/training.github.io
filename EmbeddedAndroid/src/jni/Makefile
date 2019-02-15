@@ -15,7 +15,7 @@ libHelloJNI.so : HelloJNI.o
 
 # $@ matches the target, $< matches the first dependency
 HelloJNI.o : HelloJNI.c HelloJNI.h
-	gcc $(CFLAGS) -c $< -o $@
+	gcc -fPIC $(CFLAGS) -c $< -o $@
 	
 # $* matches the target filename without the extension
 HelloJNI.h : HelloJNI.class
