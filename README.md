@@ -6,7 +6,7 @@ Date 20180613
 * [gnu_make](https://github.com/bbtechlab/training.github.io/tree/gnu_make)
 * [embedded_linux](https://github.com/bbtechlab/training.github.io/tree/embedded_linux)
 * [embedded_android](https://github.com/bbtechlab/training.github.io/tree/embedded_android)
-* [dlna](https://github.com/bbtechlab/training.github.io/blob/dlna)
+* [dlna](hhttps://github.com/bbtechlab/training.github.io/tree/dlna)
 * [yocto](https://github.com/bbtechlab/training.github.io/tree/yocto)
 
 # How to git checkout the training session
