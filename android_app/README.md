@@ -3,10 +3,10 @@ This training seems to be like technical note for developing Android mobile apps
 
 The lessons included
 
-*Chapter 1: Build your first app
-*Chapter 2: Layouts
-*Chapter 3: App Navigation
-*Chapter 4: Activity and Fragment
-*Chapter 5: App components
-*TBD.
+* Chapter 1: Build your first app </br>
+* [Chapter 2: Layouts](https://github.com/bbtechlab/training.github.io/blob/android_app/android_app/chapter_2_layout/chapter_2_layout.md) </br>
+* Chapter 3: App Navigation </br>
+* Chapter 4: Activity and Fragment </br>
+* Chapter 5: App components </br>
+* TBD.
 
