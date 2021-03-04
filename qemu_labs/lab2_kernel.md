@@ -1,9 +1,9 @@
 # Cross Compiling Linux kernel for QEMU ARM emulator
 We need to complete [lab1_toolchains](lab1_toolchains.md) to generate the ARM cross toolchain which uses for compling kernel in this lab.
 
-For this lab, we will decrible steps by steps for cross compiling kernel for ARM Versatile Express Cortex-A15 that is supported by QEMU ARM Emulator.
-* Kernel header 5.9.x
-* Target device: vexpress-a15 (ARM Versatile Express for Cortex-A15)
+For this lab, we will decrible steps by steps for cross compiling kernel for ARM Versatile Express Cortex-A9 that is supported by QEMU ARM Emulator.
+* Kernel header 5.5.x
+* Target device: vexpress-a9 (ARM Versatile Express for Cortex-A9)
 
 ## Prerequisite
 
