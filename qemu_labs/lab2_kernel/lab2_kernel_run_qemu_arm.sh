@@ -9,7 +9,7 @@ if [ "$#" -ne 3 ]; then
     exit 1
 fi
 
-qemu-system-arm -M vexpress-a15 -m 512M \
+qemu-system-arm -M vexpress-a9 -m 512M \
     -dtb ${DTB_TARGET} \
     -kernel ${KER_TARGET} \
     -initrd ${ROO_TARGET} -nographic \
