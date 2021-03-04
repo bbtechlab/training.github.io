@@ -1,0 +1,11 @@
+prefix=/home/vqdo/work/training/bbtechlab_training/embedded_linux_qemu_labs/buildroot-2020.11.1/output/host
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: expat
+Version: 2.2.10
+Description: expat XML parser
+URL: http://www.libexpat.org
+Libs: -L${libdir} -lexpat
+Cflags: -I${includedir}
