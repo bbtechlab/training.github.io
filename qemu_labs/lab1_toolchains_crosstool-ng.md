@@ -116,19 +116,17 @@ In C compiler:
 ### Compile 
 ```
 $ ./ct-ng build
-$ ls -al ${HOME}/x-tools/
-total 36
-drwxr-xr-x  9 vqdo vqdo 4096 Jan  9 00:39 .
-drwxrwxr-x  6 vqdo vqdo 4096 Jan  9 01:03 ..
-drwxr-xr-x  6 vqdo vqdo 4096 Jan  9 00:55 arm-buildroot-linux-uclibcgnueabihf
-drwxr-xr-x  2 vqdo vqdo 4096 Jan  9 01:03 bin
-drwxr-xr-x  3 vqdo vqdo 4096 Jan  9 01:03 etc
-drwxr-xr-x 10 vqdo vqdo 4096 Jan  9 01:03 include
-drwxr-xr-x  4 vqdo vqdo 4096 Jan  9 00:58 lib
-lrwxrwxrwx  1 vqdo vqdo    3 Jan  9 00:24 lib64 -> lib
-drwxr-xr-x  3 vqdo vqdo 4096 Jan  9 00:39 libexec
-drwxr-xr-x 14 vqdo vqdo 4096 Jan  9 01:03 share
-lrwxrwxrwx  1 vqdo vqdo    1 Jan  9 00:24 usr -> .
+$ ls -al ${HOME}/x-tools/arm-training-linux-uclibcgnueabi/
+total 476
+dr-xr-xr-x 8 bamboo bamboo   4096 Th03  3 22:46 .
+drwxrwxr-x 3 bamboo bamboo   4096 Th03  3 20:46 ..
+dr-xr-xr-x 7 bamboo bamboo   4096 Th03  3 22:45 arm-training-linux-uclibcgnueabi
+dr-xr-xr-x 2 bamboo bamboo   4096 Th03  3 22:45 bin
+-r--r--r-- 1 bamboo bamboo 452123 Th03  3 22:45 build.log.bz2
+dr-xr-xr-x 2 bamboo bamboo   4096 Th03  3 22:43 include
+dr-xr-xr-x 4 bamboo bamboo   4096 Th03  3 22:43 lib
+dr-xr-xr-x 3 bamboo bamboo   4096 Th03  3 22:43 libexec
+dr-xr-xr-x 4 bamboo bamboo   4096 Th03  3 22:45 share
 ```
 ### Known issues
 
