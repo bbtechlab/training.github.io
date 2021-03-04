@@ -1,0 +1,1596 @@
+Output of:
+arm-training-linux-uclibcgnueabi-gcc -Wall -Wshadow -Wwrite-strings -Wundef -Wstrict-prototypes -Wunused -Wunused-parameter -Wunused-function -Wunused-value -Wmissing-prototypes -Wmissing-declarations -Wno-format-security -Wdeclaration-after-statement -Wold-style-definition -finline-limit=0 -fno-builtin-strlen -fomit-frame-pointer -ffunction-sections -fdata-sections -fno-guess-branch-probability -funsigned-char -static-libgcc -falign-functions=1 -falign-jumps=1 -falign-labels=1 -falign-loops=1 -fno-unwind-tables -fno-asynchronous-unwind-tables -fno-builtin-printf -Os -static -o busybox_unstripped -Wl,--sort-common -Wl,--sort-section,alignment -Wl,--gc-sections -Wl,--start-group applets/built-in.o archival/lib.a archival/libarchive/lib.a console-tools/lib.a coreutils/lib.a coreutils/libcoreutils/lib.a debianutils/lib.a klibc-utils/lib.a e2fsprogs/lib.a editors/lib.a findutils/lib.a init/lib.a libbb/lib.a libpwdgrp/lib.a loginutils/lib.a mailutils/lib.a miscutils/lib.a modutils/lib.a networking/lib.a networking/libiproute/lib.a networking/udhcp/lib.a printutils/lib.a procps/lib.a runit/lib.a selinux/lib.a shell/lib.a sysklogd/lib.a util-linux/lib.a util-linux/volume_id/lib.a archival/built-in.o archival/libarchive/built-in.o console-tools/built-in.o coreutils/built-in.o coreutils/libcoreutils/built-in.o debianutils/built-in.o klibc-utils/built-in.o e2fsprogs/built-in.o editors/built-in.o findutils/built-in.o init/built-in.o libbb/built-in.o libpwdgrp/built-in.o loginutils/built-in.o mailutils/built-in.o miscutils/built-in.o modutils/built-in.o networking/built-in.o networking/libiproute/built-in.o networking/udhcp/built-in.o printutils/built-in.o procps/built-in.o runit/built-in.o selinux/built-in.o shell/built-in.o sysklogd/built-in.o util-linux/built-in.o util-linux/volume_id/built-in.o -Wl,--end-group -Wl,--start-group -Wl,--end-group -Wl,--warn-common -Wl,-Map,busybox_unstripped.map -Wl,--verbose
+==========
+GNU ld (crosstool-NG 1.24.0.105_5659366) 2.34
+  Supported emulations:
+   armelf_linux_eabi
+   armelfb_linux_eabi
+using internal linker script:
+==================================================
+/* Script for -z combreloc */
+/* Copyright (C) 2014-2020 Free Software Foundation, Inc.
+   Copying and distribution of this script, with or without modification,
+   are permitted in any medium without royalty provided the copyright
+   notice and this notice are preserved.  */
+OUTPUT_FORMAT("elf32-littlearm", "elf32-bigarm",
+	      "elf32-littlearm")
+OUTPUT_ARCH(arm)
+ENTRY(_start)
+SEARCH_DIR("=/home/bamboo/x-tools/arm-training-linux-uclibcgnueabi/arm-training-linux-uclibcgnueabi/lib"); SEARCH_DIR("=/usr/local/lib"); SEARCH_DIR("=/lib"); SEARCH_DIR("=/usr/lib");
+SECTIONS
+{
+  /* Read-only sections, merged into text segment: */
+  PROVIDE (__executable_start = SEGMENT_START("text-segment", 0x00010000)); . = SEGMENT_START("text-segment", 0x00010000) + SIZEOF_HEADERS;
+  .interp         : { *(.interp) }
+  .note.gnu.build-id  : { *(.note.gnu.build-id) }
+  .hash           : { *(.hash) }
+  .gnu.hash       : { *(.gnu.hash) }
+  .dynsym         : { *(.dynsym) }
+  .dynstr         : { *(.dynstr) }
+  .gnu.version    : { *(.gnu.version) }
+  .gnu.version_d  : { *(.gnu.version_d) }
+  .gnu.version_r  : { *(.gnu.version_r) }
+  .rel.dyn        :
+    {
+      *(.rel.init)
+      *(.rel.text .rel.text.* .rel.gnu.linkonce.t.*)
+      *(.rel.fini)
+      *(.rel.rodata .rel.rodata.* .rel.gnu.linkonce.r.*)
+      *(.rel.data.rel.ro .rel.data.rel.ro.* .rel.gnu.linkonce.d.rel.ro.*)
+      *(.rel.data .rel.data.* .rel.gnu.linkonce.d.*)
+      *(.rel.tdata .rel.tdata.* .rel.gnu.linkonce.td.*)
+      *(.rel.tbss .rel.tbss.* .rel.gnu.linkonce.tb.*)
+      *(.rel.ctors)
+      *(.rel.dtors)
+      *(.rel.got)
+      *(.rel.bss .rel.bss.* .rel.gnu.linkonce.b.*)
+      PROVIDE_HIDDEN (__rel_iplt_start = .);
+      *(.rel.iplt)
+      PROVIDE_HIDDEN (__rel_iplt_end = .);
+    }
+  .rela.dyn       :
+    {
+      *(.rela.init)
+      *(.rela.text .rela.text.* .rela.gnu.linkonce.t.*)
+      *(.rela.fini)
+      *(.rela.rodata .rela.rodata.* .rela.gnu.linkonce.r.*)
+      *(.rela.data .rela.data.* .rela.gnu.linkonce.d.*)
+      *(.rela.tdata .rela.tdata.* .rela.gnu.linkonce.td.*)
+      *(.rela.tbss .rela.tbss.* .rela.gnu.linkonce.tb.*)
+      *(.rela.ctors)
+      *(.rela.dtors)
+      *(.rela.got)
+      *(.rela.bss .rela.bss.* .rela.gnu.linkonce.b.*)
+      PROVIDE_HIDDEN (__rela_iplt_start = .);
+      *(.rela.iplt)
+      PROVIDE_HIDDEN (__rela_iplt_end = .);
+    }
+  .rel.plt        :
+    {
+      *(.rel.plt)
+    }
+  .rela.plt       :
+    {
+      *(.rela.plt)
+    }
+  .init           :
+  {
+    KEEP (*(SORT_NONE(.init)))
+  }
+  .plt            : { *(.plt) }
+  .iplt           : { *(.iplt) }
+  .text           :
+  {
+    *(.text.unlikely .text.*_unlikely .text.unlikely.*)
+    *(.text.exit .text.exit.*)
+    *(.text.startup .text.startup.*)
+    *(.text.hot .text.hot.*)
+    *(SORT(.text.sorted.*))
+    *(.text .stub .text.* .gnu.linkonce.t.*)
+    /* .gnu.warning sections are handled specially by elf.em.  */
+    *(.gnu.warning)
+    *(.glue_7t) *(.glue_7) *(.vfp11_veneer) *(.v4_bx)
+  }
+  .fini           :
+  {
+    KEEP (*(SORT_NONE(.fini)))
+  }
+  PROVIDE (__etext = .);
+  PROVIDE (_etext = .);
+  PROVIDE (etext = .);
+  .rodata         : { *(.rodata .rodata.* .gnu.linkonce.r.*) }
+  .rodata1        : { *(.rodata1) }
+  .ARM.extab   : { *(.ARM.extab* .gnu.linkonce.armextab.*) }
+  .ARM.exidx   :
+    {
+      PROVIDE_HIDDEN (__exidx_start = .);
+      *(.ARM.exidx* .gnu.linkonce.armexidx.*)
+      PROVIDE_HIDDEN (__exidx_end = .);
+    }
+  .eh_frame_hdr   : { *(.eh_frame_hdr) *(.eh_frame_entry .eh_frame_entry.*) }
+  .eh_frame       : ONLY_IF_RO { KEEP (*(.eh_frame)) *(.eh_frame.*) }
+  .gcc_except_table   : ONLY_IF_RO { *(.gcc_except_table .gcc_except_table.*) }
+  .gnu_extab   : ONLY_IF_RO { *(.gnu_extab*) }
+  /* These sections are generated by the Sun/Oracle C++ compiler.  */
+  .exception_ranges   : ONLY_IF_RO { *(.exception_ranges*) }
+  /* Adjust the address for the data segment.  We want to adjust up to
+     the same address within the page on the next page up.  */
+  . = DATA_SEGMENT_ALIGN (CONSTANT (MAXPAGESIZE), CONSTANT (COMMONPAGESIZE));
+  /* Exception handling  */
+  .eh_frame       : ONLY_IF_RW { KEEP (*(.eh_frame)) *(.eh_frame.*) }
+  .gnu_extab      : ONLY_IF_RW { *(.gnu_extab) }
+  .gcc_except_table   : ONLY_IF_RW { *(.gcc_except_table .gcc_except_table.*) }
+  .exception_ranges   : ONLY_IF_RW { *(.exception_ranges*) }
+  /* Thread Local Storage sections  */
+  .tdata	  :
+   {
+     PROVIDE_HIDDEN (__tdata_start = .);
+     *(.tdata .tdata.* .gnu.linkonce.td.*)
+   }
+  .tbss		  : { *(.tbss .tbss.* .gnu.linkonce.tb.*) *(.tcommon) }
+  .preinit_array    :
+  {
+    PROVIDE_HIDDEN (__preinit_array_start = .);
+    KEEP (*(.preinit_array))
+    PROVIDE_HIDDEN (__preinit_array_end = .);
+  }
+  .init_array    :
+  {
+    PROVIDE_HIDDEN (__init_array_start = .);
+    KEEP (*(SORT_BY_INIT_PRIORITY(.init_array.*) SORT_BY_INIT_PRIORITY(.ctors.*)))
+    KEEP (*(.init_array EXCLUDE_FILE (*crtbegin.o *crtbegin?.o *crtend.o *crtend?.o ) .ctors))
+    PROVIDE_HIDDEN (__init_array_end = .);
+  }
+  .fini_array    :
+  {
+    PROVIDE_HIDDEN (__fini_array_start = .);
+    KEEP (*(SORT_BY_INIT_PRIORITY(.fini_array.*) SORT_BY_INIT_PRIORITY(.dtors.*)))
+    KEEP (*(.fini_array EXCLUDE_FILE (*crtbegin.o *crtbegin?.o *crtend.o *crtend?.o ) .dtors))
+    PROVIDE_HIDDEN (__fini_array_end = .);
+  }
+  .ctors          :
+  {
+    /* gcc uses crtbegin.o to find the start of
+       the constructors, so we make sure it is
+       first.  Because this is a wildcard, it
+       doesn't matter if the user does not
+       actually link against crtbegin.o; the
+       linker won't look for a file to match a
+       wildcard.  The wildcard also means that it
+       doesn't matter which directory crtbegin.o
+       is in.  */
+    KEEP (*crtbegin.o(.ctors))
+    KEEP (*crtbegin?.o(.ctors))
+    /* We don't want to include the .ctor section from
+       the crtend.o file until after the sorted ctors.
+       The .ctor section from the crtend file contains the
+       end of ctors marker and it must be last */
+    KEEP (*(EXCLUDE_FILE (*crtend.o *crtend?.o ) .ctors))
+    KEEP (*(SORT(.ctors.*)))
+    KEEP (*(.ctors))
+  }
+  .dtors          :
+  {
+    KEEP (*crtbegin.o(.dtors))
+    KEEP (*crtbegin?.o(.dtors))
+    KEEP (*(EXCLUDE_FILE (*crtend.o *crtend?.o ) .dtors))
+    KEEP (*(SORT(.dtors.*)))
+    KEEP (*(.dtors))
+  }
+  .jcr            : { KEEP (*(.jcr)) }
+  .data.rel.ro : { *(.data.rel.ro.local* .gnu.linkonce.d.rel.ro.local.*) *(.data.rel.ro .data.rel.ro.* .gnu.linkonce.d.rel.ro.*) }
+  .dynamic        : { *(.dynamic) }
+  . = DATA_SEGMENT_RELRO_END (0, .);
+  .got            : { *(.got.plt) *(.igot.plt) *(.got) *(.igot) }
+  .data           :
+  {
+    PROVIDE (__data_start = .);
+    *(.data .data.* .gnu.linkonce.d.*)
+    SORT(CONSTRUCTORS)
+  }
+  .data1          : { *(.data1) }
+  _edata = .; PROVIDE (edata = .);
+  . = .;
+  __bss_start = .;
+  __bss_start__ = .;
+  .bss            :
+  {
+   *(.dynbss)
+   *(.bss .bss.* .gnu.linkonce.b.*)
+   *(COMMON)
+   /* Align here to ensure that the .bss section occupies space up to
+      _end.  Align after .bss to ensure correct alignment even if the
+      .bss section disappears because there are no input sections.
+      FIXME: Why do we need it? When there is no .bss section, we do not
+      pad the .data section.  */
+   . = ALIGN(. != 0 ? 32 / 8 : 1);
+  }
+  _bss_end__ = .; __bss_end__ = .;
+  . = ALIGN(32 / 8);
+  . = SEGMENT_START("ldata-segment", .);
+  . = ALIGN(32 / 8);
+  __end__ = .;
+  _end = .; PROVIDE (end = .);
+  . = DATA_SEGMENT_END (.);
+  /* Stabs debugging sections.  */
+  .stab          0 : { *(.stab) }
+  .stabstr       0 : { *(.stabstr) }
+  .stab.excl     0 : { *(.stab.excl) }
+  .stab.exclstr  0 : { *(.stab.exclstr) }
+  .stab.index    0 : { *(.stab.index) }
+  .stab.indexstr 0 : { *(.stab.indexstr) }
+  .comment       0 : { *(.comment) }
+  .gnu.build.attributes : { *(.gnu.build.attributes .gnu.build.attributes.*) }
+  /* DWARF debug sections.
+     Symbols in the DWARF debugging sections are relative to the beginning
+     of the section so we begin them at 0.  */
+  /* DWARF 1 */
+  .debug          0 : { *(.debug) }
+  .line           0 : { *(.line) }
+  /* GNU DWARF 1 extensions */
+  .debug_srcinfo  0 : { *(.debug_srcinfo) }
+  .debug_sfnames  0 : { *(.debug_sfnames) }
+  /* DWARF 1.1 and DWARF 2 */
+  .debug_aranges  0 : { *(.debug_aranges) }
+  .debug_pubnames 0 : { *(.debug_pubnames) }
+  /* DWARF 2 */
+  .debug_info     0 : { *(.debug_info .gnu.linkonce.wi.*) }
+  .debug_abbrev   0 : { *(.debug_abbrev) }
+  .debug_line     0 : { *(.debug_line .debug_line.* .debug_line_end) }
+  .debug_frame    0 : { *(.debug_frame) }
+  .debug_str      0 : { *(.debug_str) }
+  .debug_loc      0 : { *(.debug_loc) }
+  .debug_macinfo  0 : { *(.debug_macinfo) }
+  /* SGI/MIPS DWARF 2 extensions */
+  .debug_weaknames 0 : { *(.debug_weaknames) }
+  .debug_funcnames 0 : { *(.debug_funcnames) }
+  .debug_typenames 0 : { *(.debug_typenames) }
+  .debug_varnames  0 : { *(.debug_varnames) }
+  /* DWARF 3 */
+  .debug_pubtypes 0 : { *(.debug_pubtypes) }
+  .debug_ranges   0 : { *(.debug_ranges) }
+  /* DWARF Extension.  */
+  .debug_macro    0 : { *(.debug_macro) }
+  .debug_addr     0 : { *(.debug_addr) }
+  .gnu.attributes 0 : { KEEP (*(.gnu.attributes)) }
+  .note.gnu.arm.ident 0 : { KEEP (*(.note.gnu.arm.ident)) }
+  /DISCARD/ : { *(.note.GNU-stack) *(.gnu_debuglink) *(.gnu.lto_*) }
+}
+
+
+==================================================
+/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../lib/gcc/arm-training-linux-uclibcgnueabi/9.2.0/../../../../arm-training-linux-uclibcgnueabi/bin/ld: mode armelf_linux_eabi
+attempt to open /opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/crt1.o succeeded
+/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/crt1.o
+attempt to open /opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/crti.o succeeded
+/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/crti.o
+attempt to open /opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../lib/gcc/arm-training-linux-uclibcgnueabi/9.2.0/crtbeginT.o succeeded
+/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../lib/gcc/arm-training-linux-uclibcgnueabi/9.2.0/crtbeginT.o
+attempt to open applets/built-in.o succeeded
+applets/built-in.o
+attempt to open archival/lib.a succeeded
+archival/lib.a
+attempt to open archival/libarchive/lib.a succeeded
+archival/libarchive/lib.a
+attempt to open console-tools/lib.a succeeded
+console-tools/lib.a
+attempt to open coreutils/lib.a succeeded
+coreutils/lib.a
+attempt to open coreutils/libcoreutils/lib.a succeeded
+coreutils/libcoreutils/lib.a
+attempt to open debianutils/lib.a succeeded
+debianutils/lib.a
+attempt to open klibc-utils/lib.a succeeded
+klibc-utils/lib.a
+attempt to open e2fsprogs/lib.a succeeded
+e2fsprogs/lib.a
+attempt to open editors/lib.a succeeded
+editors/lib.a
+attempt to open findutils/lib.a succeeded
+findutils/lib.a
+attempt to open init/lib.a succeeded
+init/lib.a
+attempt to open libbb/lib.a succeeded
+libbb/lib.a
+(libbb/lib.a)appletlib.o
+(libbb/lib.a)compare_string_array.o
+(libbb/lib.a)concat_path_file.o
+(libbb/lib.a)default_error_retval.o
+(libbb/lib.a)get_last_path_component.o
+(libbb/lib.a)last_char_is.o
+(libbb/lib.a)llist.o
+(libbb/lib.a)messages.o
+(libbb/lib.a)perror_msg.o
+(libbb/lib.a)ptr_to_globals.o
+(libbb/lib.a)skip_whitespace.o
+(libbb/lib.a)verror_msg.o
+(libbb/lib.a)wfopen.o
+(libbb/lib.a)xfunc_die.o
+(libbb/lib.a)xfuncs.o
+(libbb/lib.a)xfuncs_printf.o
+(libbb/lib.a)xreadlink.o
+(libbb/lib.a)copyfd.o
+(libbb/lib.a)full_write.o
+(libbb/lib.a)read.o
+(libbb/lib.a)safe_write.o
+(libbb/lib.a)signals.o
+(libbb/lib.a)time.o
+(libbb/lib.a)xgetcwd.o
+(libbb/lib.a)bb_strtonum.o
+attempt to open libpwdgrp/lib.a succeeded
+libpwdgrp/lib.a
+(libpwdgrp/lib.a)pwd_grp.o
+(libpwdgrp/lib.a)uidgid_get.o
+attempt to open loginutils/lib.a succeeded
+loginutils/lib.a
+(loginutils/lib.a)add-remove-shell.o
+(loginutils/lib.a)addgroup.o
+(loginutils/lib.a)adduser.o
+(loginutils/lib.a)chpasswd.o
+(loginutils/lib.a)cryptpw.o
+(loginutils/lib.a)deluser.o
+(loginutils/lib.a)getty.o
+(loginutils/lib.a)login.o
+(loginutils/lib.a)passwd.o
+(loginutils/lib.a)su.o
+(loginutils/lib.a)sulogin.o
+(loginutils/lib.a)vlock.o
+attempt to open mailutils/lib.a succeeded
+mailutils/lib.a
+(mailutils/lib.a)makemime.o
+(mailutils/lib.a)popmaildir.o
+(mailutils/lib.a)reformime.o
+(mailutils/lib.a)sendmail.o
+(mailutils/lib.a)mail.o
+attempt to open miscutils/lib.a succeeded
+miscutils/lib.a
+(miscutils/lib.a)adjtimex.o
+(miscutils/lib.a)bc.o
+(miscutils/lib.a)beep.o
+(miscutils/lib.a)chat.o
+(miscutils/lib.a)conspy.o
+(miscutils/lib.a)crond.o
+(miscutils/lib.a)crontab.o
+(miscutils/lib.a)devmem.o
+(miscutils/lib.a)fbsplash.o
+(miscutils/lib.a)hdparm.o
+(miscutils/lib.a)hexedit.o
+(miscutils/lib.a)i2c_tools.o
+(miscutils/lib.a)less.o
+(miscutils/lib.a)lsscsi.o
+(miscutils/lib.a)makedevs.o
+(miscutils/lib.a)man.o
+(miscutils/lib.a)microcom.o
+(miscutils/lib.a)mt.o
+(miscutils/lib.a)nandwrite.o
+(miscutils/lib.a)partprobe.o
+(miscutils/lib.a)raidautorun.o
+(miscutils/lib.a)readahead.o
+(miscutils/lib.a)runlevel.o
+(miscutils/lib.a)rx.o
+(miscutils/lib.a)setfattr.o
+(miscutils/lib.a)setserial.o
+(miscutils/lib.a)strings.o
+(miscutils/lib.a)time.o
+(miscutils/lib.a)ts.o
+(miscutils/lib.a)ttysize.o
+(miscutils/lib.a)ubi_tools.o
+(miscutils/lib.a)ubirename.o
+(miscutils/lib.a)volname.o
+(miscutils/lib.a)watchdog.o
+attempt to open modutils/lib.a succeeded
+modutils/lib.a
+(modutils/lib.a)modinfo.o
+(modutils/lib.a)modprobe-small.o
+(modutils/lib.a)modutils.o
+attempt to open networking/lib.a succeeded
+networking/lib.a
+(networking/lib.a)arp.o
+(networking/lib.a)arping.o
+(networking/lib.a)brctl.o
+(networking/lib.a)dnsd.o
+(networking/lib.a)ether-wake.o
+(networking/lib.a)ftpd.o
+(networking/lib.a)ftpgetput.o
+(networking/lib.a)hostname.o
+(networking/lib.a)httpd.o
+(networking/lib.a)ifconfig.o
+(networking/lib.a)ifenslave.o
+(networking/lib.a)ifplugd.o
+(networking/lib.a)ifupdown.o
+(networking/lib.a)inetd.o
+(networking/lib.a)interface.o
+(networking/lib.a)ip.o
+(networking/lib.a)ipcalc.o
+(networking/lib.a)isrv_identd.o
+(networking/lib.a)nameif.o
+(networking/lib.a)nbd-client.o
+(networking/lib.a)nc.o
+(networking/lib.a)netstat.o
+(networking/lib.a)nslookup.o
+(networking/lib.a)ntpd.o
+(networking/lib.a)parse_pasv_epsv.o
+(networking/lib.a)ping.o
+(networking/lib.a)pscan.o
+(networking/lib.a)route.o
+(networking/lib.a)slattach.o
+(networking/lib.a)ssl_client.o
+(networking/lib.a)tc.o
+(networking/lib.a)tcpudp.o
+(networking/lib.a)tcpudp_perhost.o
+(networking/lib.a)telnet.o
+(networking/lib.a)telnetd.o
+(networking/lib.a)tftp.o
+(networking/lib.a)tls.o
+(networking/lib.a)tls_aes.o
+(networking/lib.a)tls_aesgcm.o
+(networking/lib.a)tls_fe.o
+(networking/lib.a)tls_pstm.o
+(networking/lib.a)tls_pstm_montgomery_reduce.o
+(networking/lib.a)tls_pstm_mul_comba.o
+(networking/lib.a)tls_pstm_sqr_comba.o
+(networking/lib.a)tls_rsa.o
+(networking/lib.a)traceroute.o
+(networking/lib.a)tunctl.o
+(networking/lib.a)vconfig.o
+(networking/lib.a)wget.o
+(networking/lib.a)whois.o
+(networking/lib.a)zcip.o
+(networking/lib.a)isrv.o
+attempt to open networking/libiproute/lib.a succeeded
+networking/libiproute/lib.a
+(networking/libiproute/lib.a)ip_parse_common_args.o
+(networking/libiproute/lib.a)ipaddress.o
+(networking/libiproute/lib.a)iplink.o
+(networking/libiproute/lib.a)ipneigh.o
+(networking/libiproute/lib.a)iproute.o
+(networking/libiproute/lib.a)iprule.o
+(networking/libiproute/lib.a)iptunnel.o
+(networking/libiproute/lib.a)libnetlink.o
+(networking/libiproute/lib.a)ll_addr.o
+(networking/libiproute/lib.a)ll_map.o
+(networking/libiproute/lib.a)ll_proto.o
+(networking/libiproute/lib.a)ll_types.o
+(networking/libiproute/lib.a)rt_names.o
+(networking/libiproute/lib.a)rtm_map.o
+(networking/libiproute/lib.a)utils.o
+attempt to open networking/udhcp/lib.a succeeded
+networking/udhcp/lib.a
+(networking/udhcp/lib.a)d6_dhcpc.o
+(networking/udhcp/lib.a)d6_packet.o
+(networking/udhcp/lib.a)d6_socket.o
+(networking/udhcp/lib.a)dhcpc.o
+(networking/udhcp/lib.a)dhcpd.o
+(networking/udhcp/lib.a)dhcprelay.o
+(networking/udhcp/lib.a)domain_codec.o
+(networking/udhcp/lib.a)dumpleases.o
+(networking/udhcp/lib.a)packet.o
+(networking/udhcp/lib.a)signalpipe.o
+(networking/udhcp/lib.a)socket.o
+(networking/udhcp/lib.a)arpping.o
+(networking/udhcp/lib.a)common.o
+attempt to open printutils/lib.a succeeded
+printutils/lib.a
+(printutils/lib.a)lpd.o
+(printutils/lib.a)lpr.o
+attempt to open procps/lib.a succeeded
+procps/lib.a
+(procps/lib.a)free.o
+(procps/lib.a)fuser.o
+(procps/lib.a)iostat.o
+(procps/lib.a)kill.o
+(procps/lib.a)lsof.o
+(procps/lib.a)mpstat.o
+(procps/lib.a)nmeter.o
+(procps/lib.a)pgrep.o
+(procps/lib.a)pidof.o
+(procps/lib.a)pmap.o
+(procps/lib.a)powertop.o
+(procps/lib.a)ps.o
+(procps/lib.a)pstree.o
+(procps/lib.a)pwdx.o
+(procps/lib.a)smemcap.o
+(procps/lib.a)sysctl.o
+(procps/lib.a)top.o
+(procps/lib.a)uptime.o
+(procps/lib.a)watch.o
+attempt to open runit/lib.a succeeded
+runit/lib.a
+(runit/lib.a)chpst.o
+(runit/lib.a)runsv.o
+(runit/lib.a)runsvdir.o
+(runit/lib.a)sv.o
+(runit/lib.a)svlogd.o
+attempt to open selinux/lib.a succeeded
+selinux/lib.a
+attempt to open shell/lib.a succeeded
+shell/lib.a
+(shell/lib.a)ash.o
+(shell/lib.a)ash_ptr_hack.o
+(shell/lib.a)cttyhack.o
+(shell/lib.a)hush.o
+(shell/lib.a)match.o
+(shell/lib.a)math.o
+(shell/lib.a)random.o
+(shell/lib.a)shell_common.o
+attempt to open sysklogd/lib.a succeeded
+sysklogd/lib.a
+(sysklogd/lib.a)klogd.o
+(sysklogd/lib.a)logread.o
+(sysklogd/lib.a)syslogd_and_logger.o
+attempt to open util-linux/lib.a succeeded
+util-linux/lib.a
+(util-linux/lib.a)acpid.o
+(util-linux/lib.a)blkdiscard.o
+(util-linux/lib.a)blkid.o
+(util-linux/lib.a)blockdev.o
+(util-linux/lib.a)cal.o
+(util-linux/lib.a)chrt.o
+(util-linux/lib.a)dmesg.o
+(util-linux/lib.a)eject.o
+(util-linux/lib.a)fallocate.o
+(util-linux/lib.a)fatattr.o
+(util-linux/lib.a)fbset.o
+(util-linux/lib.a)fdformat.o
+(util-linux/lib.a)fdisk.o
+(util-linux/lib.a)findfs.o
+(util-linux/lib.a)flock.o
+(util-linux/lib.a)freeramdisk.o
+(util-linux/lib.a)fsck_minix.o
+(util-linux/lib.a)fsfreeze.o
+(util-linux/lib.a)fstrim.o
+(util-linux/lib.a)getopt.o
+(util-linux/lib.a)hexdump.o
+(util-linux/lib.a)hexdump_xxd.o
+(util-linux/lib.a)hwclock.o
+(util-linux/lib.a)ionice.o
+(util-linux/lib.a)ipcrm.o
+(util-linux/lib.a)ipcs.o
+(util-linux/lib.a)last_fancy.o
+(util-linux/lib.a)losetup.o
+(util-linux/lib.a)lspci.o
+(util-linux/lib.a)lsusb.o
+(util-linux/lib.a)mdev.o
+(util-linux/lib.a)mesg.o
+(util-linux/lib.a)mkfs_ext2.o
+(util-linux/lib.a)mkfs_minix.o
+(util-linux/lib.a)mkfs_vfat.o
+(util-linux/lib.a)mkswap.o
+(util-linux/lib.a)more.o
+(util-linux/lib.a)mount.o
+(util-linux/lib.a)mountpoint.o
+(util-linux/lib.a)nsenter.o
+(util-linux/lib.a)pivot_root.o
+(util-linux/lib.a)rdate.o
+(util-linux/lib.a)rdev.o
+(util-linux/lib.a)readprofile.o
+(util-linux/lib.a)renice.o
+(util-linux/lib.a)rev.o
+(util-linux/lib.a)rtcwake.o
+(util-linux/lib.a)script.o
+(util-linux/lib.a)scriptreplay.o
+(util-linux/lib.a)setarch.o
+(util-linux/lib.a)setpriv.o
+(util-linux/lib.a)setsid.o
+(util-linux/lib.a)swaponoff.o
+(util-linux/lib.a)switch_root.o
+(util-linux/lib.a)taskset.o
+(util-linux/lib.a)uevent.o
+(util-linux/lib.a)umount.o
+(util-linux/lib.a)unshare.o
+(util-linux/lib.a)wall.o
+attempt to open util-linux/volume_id/lib.a succeeded
+util-linux/volume_id/lib.a
+(util-linux/volume_id/lib.a)get_devname.o
+(util-linux/volume_id/lib.a)volume_id.o
+(util-linux/volume_id/lib.a)xfs.o
+(util-linux/volume_id/lib.a)bcache.o
+(util-linux/volume_id/lib.a)btrfs.o
+(util-linux/volume_id/lib.a)cramfs.o
+(util-linux/volume_id/lib.a)exfat.o
+(util-linux/volume_id/lib.a)ext.o
+(util-linux/volume_id/lib.a)f2fs.o
+(util-linux/volume_id/lib.a)fat.o
+(util-linux/volume_id/lib.a)hfs.o
+(util-linux/volume_id/lib.a)iso9660.o
+(util-linux/volume_id/lib.a)jfs.o
+(util-linux/volume_id/lib.a)lfs.o
+(util-linux/volume_id/lib.a)linux_raid.o
+(util-linux/volume_id/lib.a)linux_swap.o
+(util-linux/volume_id/lib.a)luks.o
+(util-linux/volume_id/lib.a)minix.o
+(util-linux/volume_id/lib.a)nilfs.o
+(util-linux/volume_id/lib.a)ntfs.o
+(util-linux/volume_id/lib.a)ocfs2.o
+(util-linux/volume_id/lib.a)reiserfs.o
+(util-linux/volume_id/lib.a)romfs.o
+(util-linux/volume_id/lib.a)squashfs.o
+(util-linux/volume_id/lib.a)sysv.o
+(util-linux/volume_id/lib.a)ubifs.o
+(util-linux/volume_id/lib.a)udf.o
+(util-linux/volume_id/lib.a)util.o
+attempt to open archival/built-in.o succeeded
+archival/built-in.o
+attempt to open archival/libarchive/built-in.o succeeded
+archival/libarchive/built-in.o
+attempt to open console-tools/built-in.o succeeded
+console-tools/built-in.o
+attempt to open coreutils/built-in.o succeeded
+coreutils/built-in.o
+attempt to open coreutils/libcoreutils/built-in.o succeeded
+coreutils/libcoreutils/built-in.o
+attempt to open debianutils/built-in.o succeeded
+debianutils/built-in.o
+attempt to open klibc-utils/built-in.o succeeded
+klibc-utils/built-in.o
+attempt to open e2fsprogs/built-in.o succeeded
+e2fsprogs/built-in.o
+attempt to open editors/built-in.o succeeded
+editors/built-in.o
+attempt to open findutils/built-in.o succeeded
+findutils/built-in.o
+attempt to open init/built-in.o succeeded
+init/built-in.o
+attempt to open libbb/built-in.o succeeded
+libbb/built-in.o
+attempt to open libpwdgrp/built-in.o succeeded
+libpwdgrp/built-in.o
+attempt to open loginutils/built-in.o succeeded
+loginutils/built-in.o
+attempt to open mailutils/built-in.o succeeded
+mailutils/built-in.o
+attempt to open miscutils/built-in.o succeeded
+miscutils/built-in.o
+attempt to open modutils/built-in.o succeeded
+modutils/built-in.o
+attempt to open networking/built-in.o succeeded
+networking/built-in.o
+attempt to open networking/libiproute/built-in.o succeeded
+networking/libiproute/built-in.o
+attempt to open networking/udhcp/built-in.o succeeded
+networking/udhcp/built-in.o
+attempt to open printutils/built-in.o succeeded
+printutils/built-in.o
+attempt to open procps/built-in.o succeeded
+procps/built-in.o
+attempt to open runit/built-in.o succeeded
+runit/built-in.o
+attempt to open selinux/built-in.o succeeded
+selinux/built-in.o
+attempt to open shell/built-in.o succeeded
+shell/built-in.o
+attempt to open sysklogd/built-in.o succeeded
+sysklogd/built-in.o
+attempt to open util-linux/built-in.o succeeded
+util-linux/built-in.o
+attempt to open util-linux/volume_id/built-in.o succeeded
+util-linux/volume_id/built-in.o
+archival/lib.a
+(archival/lib.a)bbunzip.o
+(archival/lib.a)bzip2.o
+(archival/lib.a)cpio.o
+(archival/lib.a)dpkg.o
+(archival/lib.a)dpkg_deb.o
+(archival/lib.a)gzip.o
+(archival/lib.a)lzop.o
+(archival/lib.a)rpm.o
+(archival/lib.a)tar.o
+(archival/lib.a)unzip.o
+archival/libarchive/lib.a
+(archival/libarchive/lib.a)common.o
+(archival/libarchive/lib.a)data_extract_all.o
+(archival/libarchive/lib.a)data_extract_to_command.o
+(archival/libarchive/lib.a)data_extract_to_stdout.o
+(archival/libarchive/lib.a)data_skip.o
+(archival/libarchive/lib.a)decompress_bunzip2.o
+(archival/libarchive/lib.a)decompress_gunzip.o
+(archival/libarchive/lib.a)decompress_unlzma.o
+(archival/libarchive/lib.a)decompress_unxz.o
+(archival/libarchive/lib.a)filter_accept_list.o
+(archival/libarchive/lib.a)filter_accept_list_reassign.o
+(archival/libarchive/lib.a)filter_accept_reject_list.o
+(archival/libarchive/lib.a)find_list_entry.o
+(archival/libarchive/lib.a)get_header_cpio.o
+(archival/libarchive/lib.a)get_header_tar.o
+(archival/libarchive/lib.a)get_header_tar_bz2.o
+(archival/libarchive/lib.a)get_header_tar_gz.o
+(archival/libarchive/lib.a)get_header_tar_lzma.o
+(archival/libarchive/lib.a)get_header_tar_xz.o
+(archival/libarchive/lib.a)header_list.o
+(archival/libarchive/lib.a)header_verbose_list.o
+(archival/libarchive/lib.a)init_handle.o
+(archival/libarchive/lib.a)lzo1x_1.o
+(archival/libarchive/lib.a)lzo1x_1o.o
+(archival/libarchive/lib.a)lzo1x_d.o
+(archival/libarchive/lib.a)open_transformer.o
+(archival/libarchive/lib.a)seek_by_jump.o
+(archival/libarchive/lib.a)seek_by_read.o
+(archival/libarchive/lib.a)unpack_ar_archive.o
+(archival/libarchive/lib.a)unsafe_prefix.o
+(archival/libarchive/lib.a)unsafe_symlink_target.o
+(archival/libarchive/lib.a)data_align.o
+(archival/libarchive/lib.a)filter_accept_all.o
+(archival/libarchive/lib.a)get_header_ar.o
+(archival/libarchive/lib.a)header_skip.o
+console-tools/lib.a
+(console-tools/lib.a)chvt.o
+(console-tools/lib.a)clear.o
+(console-tools/lib.a)deallocvt.o
+(console-tools/lib.a)dumpkmap.o
+(console-tools/lib.a)fgconsole.o
+(console-tools/lib.a)kbd_mode.o
+(console-tools/lib.a)loadfont.o
+(console-tools/lib.a)loadkmap.o
+(console-tools/lib.a)openvt.o
+(console-tools/lib.a)reset.o
+(console-tools/lib.a)resize.o
+(console-tools/lib.a)setconsole.o
+(console-tools/lib.a)setkeycodes.o
+(console-tools/lib.a)setlogcons.o
+(console-tools/lib.a)showkey.o
+coreutils/lib.a
+(coreutils/lib.a)basename.o
+(coreutils/lib.a)cat.o
+(coreutils/lib.a)chgrp.o
+(coreutils/lib.a)chmod.o
+(coreutils/lib.a)chown.o
+(coreutils/lib.a)chroot.o
+(coreutils/lib.a)cksum.o
+(coreutils/lib.a)comm.o
+(coreutils/lib.a)cp.o
+(coreutils/lib.a)cut.o
+(coreutils/lib.a)date.o
+(coreutils/lib.a)dd.o
+(coreutils/lib.a)df.o
+(coreutils/lib.a)dirname.o
+(coreutils/lib.a)dos2unix.o
+(coreutils/lib.a)du.o
+(coreutils/lib.a)echo.o
+(coreutils/lib.a)env.o
+(coreutils/lib.a)expand.o
+(coreutils/lib.a)expr.o
+(coreutils/lib.a)factor.o
+(coreutils/lib.a)false.o
+(coreutils/lib.a)fold.o
+(coreutils/lib.a)head.o
+(coreutils/lib.a)hostid.o
+(coreutils/lib.a)id.o
+(coreutils/lib.a)install.o
+(coreutils/lib.a)link.o
+(coreutils/lib.a)ln.o
+(coreutils/lib.a)logname.o
+(coreutils/lib.a)ls.o
+(coreutils/lib.a)md5_sha1_sum.o
+(coreutils/lib.a)mkdir.o
+(coreutils/lib.a)mkfifo.o
+(coreutils/lib.a)mknod.o
+(coreutils/lib.a)mktemp.o
+(coreutils/lib.a)mv.o
+(coreutils/lib.a)nice.o
+(coreutils/lib.a)nl.o
+(coreutils/lib.a)nohup.o
+(coreutils/lib.a)nproc.o
+(coreutils/lib.a)od.o
+(coreutils/lib.a)paste.o
+(coreutils/lib.a)printenv.o
+(coreutils/lib.a)printf.o
+(coreutils/lib.a)pwd.o
+(coreutils/lib.a)readlink.o
+(coreutils/lib.a)realpath.o
+(coreutils/lib.a)rm.o
+(coreutils/lib.a)rmdir.o
+(coreutils/lib.a)seq.o
+(coreutils/lib.a)shred.o
+(coreutils/lib.a)shuf.o
+(coreutils/lib.a)sleep.o
+(coreutils/lib.a)sort.o
+(coreutils/lib.a)split.o
+(coreutils/lib.a)stat.o
+(coreutils/lib.a)stty.o
+(coreutils/lib.a)sum.o
+(coreutils/lib.a)sync.o
+(coreutils/lib.a)tac.o
+(coreutils/lib.a)tail.o
+(coreutils/lib.a)tee.o
+(coreutils/lib.a)test.o
+(coreutils/lib.a)test_ptr_hack.o
+(coreutils/lib.a)timeout.o
+(coreutils/lib.a)touch.o
+(coreutils/lib.a)tr.o
+(coreutils/lib.a)true.o
+(coreutils/lib.a)truncate.o
+(coreutils/lib.a)tty.o
+(coreutils/lib.a)uname.o
+(coreutils/lib.a)uniq.o
+(coreutils/lib.a)unlink.o
+(coreutils/lib.a)usleep.o
+(coreutils/lib.a)uudecode.o
+(coreutils/lib.a)uuencode.o
+(coreutils/lib.a)wc.o
+(coreutils/lib.a)who.o
+(coreutils/lib.a)whoami.o
+(coreutils/lib.a)yes.o
+coreutils/libcoreutils/lib.a
+(coreutils/libcoreutils/lib.a)cp_mv_stat.o
+(coreutils/libcoreutils/lib.a)getopt_mk_fifo_nod.o
+debianutils/lib.a
+(debianutils/lib.a)pipe_progress.o
+(debianutils/lib.a)run_parts.o
+(debianutils/lib.a)start_stop_daemon.o
+(debianutils/lib.a)which.o
+klibc-utils/lib.a
+(klibc-utils/lib.a)nuke.o
+(klibc-utils/lib.a)resume.o
+e2fsprogs/lib.a
+(e2fsprogs/lib.a)chattr.o
+(e2fsprogs/lib.a)e2fs_lib.o
+(e2fsprogs/lib.a)fsck.o
+(e2fsprogs/lib.a)lsattr.o
+editors/lib.a
+(editors/lib.a)awk.o
+(editors/lib.a)cmp.o
+(editors/lib.a)diff.o
+(editors/lib.a)ed.o
+(editors/lib.a)patch.o
+(editors/lib.a)sed.o
+(editors/lib.a)vi.o
+findutils/lib.a
+(findutils/lib.a)find.o
+(findutils/lib.a)grep.o
+(findutils/lib.a)xargs.o
+init/lib.a
+(init/lib.a)bootchartd.o
+(init/lib.a)halt.o
+(init/lib.a)init.o
+libbb/lib.a
+(libbb/lib.a)ask_confirmation.o
+(libbb/lib.a)auto_string.o
+(libbb/lib.a)bb_askpass.o
+(libbb/lib.a)bb_bswap_64.o
+(libbb/lib.a)bb_cat.o
+(libbb/lib.a)bb_do_delay.o
+(libbb/lib.a)bb_getgroups.o
+(libbb/lib.a)bb_getsockname.o
+(libbb/lib.a)bb_pwd.o
+(libbb/lib.a)bb_qsort.o
+(libbb/lib.a)capability.o
+(libbb/lib.a)change_identity.o
+(libbb/lib.a)chomp.o
+(libbb/lib.a)common_bufsiz.o
+(libbb/lib.a)concat_subpath_file.o
+(libbb/lib.a)copy_file.o
+(libbb/lib.a)correct_password.o
+(libbb/lib.a)crc32.o
+(libbb/lib.a)device_open.o
+(libbb/lib.a)dump.o
+(libbb/lib.a)duration.o
+(libbb/lib.a)endofname.o
+(libbb/lib.a)executable.o
+(libbb/lib.a)fclose_nonstdin.o
+(libbb/lib.a)fflush_stdout_and_exit.o
+(libbb/lib.a)fgets_str.o
+(libbb/lib.a)find_mount_point.o
+(libbb/lib.a)find_pid_by_name.o
+(libbb/lib.a)find_root_device.o
+(libbb/lib.a)get_console.o
+(libbb/lib.a)get_cpu_count.o
+(libbb/lib.a)get_line_from_file.o
+(libbb/lib.a)get_shell_name.o
+(libbb/lib.a)get_volsize.o
+(libbb/lib.a)getopt32.o
+(libbb/lib.a)getopt_allopts.o
+(libbb/lib.a)getpty.o
+(libbb/lib.a)hash_md5_sha.o
+(libbb/lib.a)herror_msg.o
+(libbb/lib.a)human_readable.o
+(libbb/lib.a)in_ether.o
+(libbb/lib.a)inet_cksum.o
+(libbb/lib.a)inet_common.o
+(libbb/lib.a)inode_hash.o
+(libbb/lib.a)isdirectory.o
+(libbb/lib.a)isqrt.o
+(libbb/lib.a)kernel_version.o
+(libbb/lib.a)lineedit.o
+(libbb/lib.a)lineedit_ptr_hack.o
+(libbb/lib.a)logenv.o
+(libbb/lib.a)login.o
+(libbb/lib.a)loop.o
+(libbb/lib.a)make_directory.o
+(libbb/lib.a)makedev.o
+(libbb/lib.a)match_fstype.o
+(libbb/lib.a)mode_string.o
+(libbb/lib.a)nuke_str.o
+(libbb/lib.a)obscure.o
+(libbb/lib.a)parse_config.o
+(libbb/lib.a)parse_mode.o
+(libbb/lib.a)percent_decode.o
+(libbb/lib.a)perror_nomsg_and_die.o
+(libbb/lib.a)pidfile.o
+(libbb/lib.a)print_flags.o
+(libbb/lib.a)print_numbered_lines.o
+(libbb/lib.a)printable.o
+(libbb/lib.a)printable_string.o
+(libbb/lib.a)process_escape_sequence.o
+(libbb/lib.a)procps.o
+(libbb/lib.a)progress.o
+(libbb/lib.a)pw_encrypt.o
+(libbb/lib.a)read_key.o
+(libbb/lib.a)read_printf.o
+(libbb/lib.a)recursive_action.o
+(libbb/lib.a)remove_file.o
+(libbb/lib.a)replace.o
+(libbb/lib.a)rtc.o
+(libbb/lib.a)run_shell.o
+(libbb/lib.a)safe_gethostname.o
+(libbb/lib.a)safe_poll.o
+(libbb/lib.a)safe_strncpy.o
+(libbb/lib.a)securetty.o
+(libbb/lib.a)setup_environment.o
+(libbb/lib.a)simplify_path.o
+(libbb/lib.a)single_argv.o
+(libbb/lib.a)speed_table.o
+(libbb/lib.a)str_tolower.o
+(libbb/lib.a)strrstr.o
+(libbb/lib.a)sysconf.o
+(libbb/lib.a)trim.o
+(libbb/lib.a)u_signal_names.o
+(libbb/lib.a)ubi.o
+(libbb/lib.a)udp_io.o
+(libbb/lib.a)unicode.o
+(libbb/lib.a)update_passwd.o
+(libbb/lib.a)utmp.o
+(libbb/lib.a)uuencode.o
+(libbb/lib.a)vfork_daemon_rexec.o
+(libbb/lib.a)warn_ignoring_args.o
+(libbb/lib.a)wfopen_input.o
+(libbb/lib.a)write.o
+(libbb/lib.a)xatonum.o
+(libbb/lib.a)xconnect.o
+(libbb/lib.a)xgethostbyname.o
+(libbb/lib.a)xrealloc_vector.o
+(libbb/lib.a)xregcomp.o
+(libbb/lib.a)perror_nomsg.o
+libpwdgrp/lib.a
+loginutils/lib.a
+mailutils/lib.a
+miscutils/lib.a
+modutils/lib.a
+networking/lib.a
+networking/libiproute/lib.a
+networking/udhcp/lib.a
+printutils/lib.a
+procps/lib.a
+runit/lib.a
+selinux/lib.a
+shell/lib.a
+sysklogd/lib.a
+util-linux/lib.a
+util-linux/volume_id/lib.a
+archival/built-in.o
+archival/libarchive/built-in.o
+console-tools/built-in.o
+coreutils/built-in.o
+coreutils/libcoreutils/built-in.o
+debianutils/built-in.o
+klibc-utils/built-in.o
+e2fsprogs/built-in.o
+editors/built-in.o
+findutils/built-in.o
+init/built-in.o
+libbb/built-in.o
+libpwdgrp/built-in.o
+loginutils/built-in.o
+mailutils/built-in.o
+miscutils/built-in.o
+modutils/built-in.o
+networking/built-in.o
+networking/libiproute/built-in.o
+networking/udhcp/built-in.o
+printutils/built-in.o
+procps/built-in.o
+runit/built-in.o
+selinux/built-in.o
+shell/built-in.o
+sysklogd/built-in.o
+util-linux/built-in.o
+util-linux/volume_id/built-in.o
+archival/lib.a
+archival/libarchive/lib.a
+console-tools/lib.a
+coreutils/lib.a
+coreutils/libcoreutils/lib.a
+debianutils/lib.a
+klibc-utils/lib.a
+e2fsprogs/lib.a
+editors/lib.a
+findutils/lib.a
+init/lib.a
+libbb/lib.a
+libpwdgrp/lib.a
+loginutils/lib.a
+mailutils/lib.a
+miscutils/lib.a
+modutils/lib.a
+networking/lib.a
+networking/libiproute/lib.a
+networking/udhcp/lib.a
+printutils/lib.a
+procps/lib.a
+runit/lib.a
+selinux/lib.a
+shell/lib.a
+sysklogd/lib.a
+util-linux/lib.a
+util-linux/volume_id/lib.a
+archival/built-in.o
+archival/libarchive/built-in.o
+console-tools/built-in.o
+coreutils/built-in.o
+coreutils/libcoreutils/built-in.o
+debianutils/built-in.o
+klibc-utils/built-in.o
+e2fsprogs/built-in.o
+editors/built-in.o
+findutils/built-in.o
+init/built-in.o
+libbb/built-in.o
+libpwdgrp/built-in.o
+loginutils/built-in.o
+mailutils/built-in.o
+miscutils/built-in.o
+modutils/built-in.o
+networking/built-in.o
+networking/libiproute/built-in.o
+networking/udhcp/built-in.o
+printutils/built-in.o
+procps/built-in.o
+runit/built-in.o
+selinux/built-in.o
+shell/built-in.o
+sysklogd/built-in.o
+util-linux/built-in.o
+util-linux/volume_id/built-in.o
+attempt to open /opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../lib/gcc/arm-training-linux-uclibcgnueabi/9.2.0/libgcc.a succeeded
+/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../lib/gcc/arm-training-linux-uclibcgnueabi/9.2.0/libgcc.a
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../lib/gcc/arm-training-linux-uclibcgnueabi/9.2.0/libgcc.a)_arm_muldf3.o
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../lib/gcc/arm-training-linux-uclibcgnueabi/9.2.0/libgcc.a)_arm_mulsf3.o
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../lib/gcc/arm-training-linux-uclibcgnueabi/9.2.0/libgcc.a)_udivsi3.o
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../lib/gcc/arm-training-linux-uclibcgnueabi/9.2.0/libgcc.a)_divsi3.o
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../lib/gcc/arm-training-linux-uclibcgnueabi/9.2.0/libgcc.a)_arm_addsubdf3.o
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../lib/gcc/arm-training-linux-uclibcgnueabi/9.2.0/libgcc.a)_arm_muldivdf3.o
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../lib/gcc/arm-training-linux-uclibcgnueabi/9.2.0/libgcc.a)_arm_cmpdf2.o
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../lib/gcc/arm-training-linux-uclibcgnueabi/9.2.0/libgcc.a)_arm_fixdfsi.o
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../lib/gcc/arm-training-linux-uclibcgnueabi/9.2.0/libgcc.a)_arm_fixunsdfsi.o
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../lib/gcc/arm-training-linux-uclibcgnueabi/9.2.0/libgcc.a)_arm_truncdfsf2.o
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../lib/gcc/arm-training-linux-uclibcgnueabi/9.2.0/libgcc.a)_arm_addsubsf3.o
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../lib/gcc/arm-training-linux-uclibcgnueabi/9.2.0/libgcc.a)_aeabi_ldivmod.o
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../lib/gcc/arm-training-linux-uclibcgnueabi/9.2.0/libgcc.a)_aeabi_uldivmod.o
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../lib/gcc/arm-training-linux-uclibcgnueabi/9.2.0/libgcc.a)_dvmd_lnx.o
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../lib/gcc/arm-training-linux-uclibcgnueabi/9.2.0/libgcc.a)_bswapsi2.o
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../lib/gcc/arm-training-linux-uclibcgnueabi/9.2.0/libgcc.a)_bswapdi2.o
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../lib/gcc/arm-training-linux-uclibcgnueabi/9.2.0/libgcc.a)_fixdfdi.o
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../lib/gcc/arm-training-linux-uclibcgnueabi/9.2.0/libgcc.a)_fixunsdfdi.o
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../lib/gcc/arm-training-linux-uclibcgnueabi/9.2.0/libgcc.a)_udivmoddi4.o
+attempt to open /opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../lib/gcc/arm-training-linux-uclibcgnueabi/9.2.0/libgcc_eh.a succeeded
+/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../lib/gcc/arm-training-linux-uclibcgnueabi/9.2.0/libgcc_eh.a
+attempt to open /opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../lib/gcc/arm-training-linux-uclibcgnueabi/9.2.0/libc.a failed
+attempt to open /opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../lib/gcc/libc.a failed
+attempt to open /opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../lib/gcc/arm-training-linux-uclibcgnueabi/9.2.0/../../../../arm-training-linux-uclibcgnueabi/lib/libc.a failed
+attempt to open /opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/lib/libc.a failed
+attempt to open /opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a succeeded
+/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)sigaction.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)setjmp.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)bsd-_setjmp.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)sigrestorer.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)vfork.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)mmap64.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)syscall-eabi.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)dup2.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)execve.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)getppid.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)getgroups.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)fsync.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)sync.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)fdatasync.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)getresgid.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)umount2.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)pread_write.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)waitpid.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)chown.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)flock.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)seteuid.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)uname.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)getsid.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)settimeofday.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)rmdir.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)pipe.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)ioctl.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)capget.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)sched_getparam.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)getcwd.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)acct.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)getpagesize.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)makedev.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)getuid.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)setpgrp.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)getpriority.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)readahead.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)nice.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)setgid.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)setpriority.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)time.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)pivot_root.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)lutimes.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)chmod.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)select.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)getegid.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)prctl.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)wait.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)geteuid.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)mlock.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)longjmp.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)syncfs.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)getresuid.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)capset.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)utimensat.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)adjtimex.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)setreuid.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)access.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)setuid.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)__syscall_rt_sigaction.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)mkdir.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)fchdir.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)chdir.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)pause.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)getgid.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)fchmod.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)wait3.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)link.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)readlink.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)munlock.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)sigsuspend.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)cmsg_nxthdr.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)setpgid.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)read.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)poll.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)unshare.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)sched_get_priority_min.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)mkfifo.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)sysinfo.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)kill.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)gettimeofday.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)dup.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)write.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)klogctl.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)setsid.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)sched_get_priority_max.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)munmap.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)nanosleep.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)setresuid.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)swapon.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)utimes.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)times.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)reboot.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)mount.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)wait4.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)rename.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)setitimer.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)setgroups.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)setns.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)chroot.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)alarm.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)xattr.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)swapoff.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)_exit.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)setegid.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)sigprocmask.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)unlink.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)setresgid.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)personality.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)sched_setaffinity.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)__rt_sigtimedwait.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)symlink.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)sched_getaffinity.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)umask.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)lchown.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)mknod.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)close.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)fchown.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)sethostname.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)clock_settime.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)sched_yield.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)sched_setscheduler.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)sched_getscheduler.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)getpgrp.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)llseek.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)getrlimit64.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)lstat64.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)ftruncate64.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)fstat64.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)setrlimit64.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)open64.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)__syscall_fcntl64.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)creat64.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)stat64.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)posix_fallocate64.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)fallocate64.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)sendfile64.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)closedir.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)opendir.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)readdir64.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)fnmatch.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)glob64.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)errno.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)__errno_location.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)__h_errno_location.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)mntent.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)regex.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)statvfs64.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)statfs64.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)syslog.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)semget.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)semctl.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)semop.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)shmat.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)shmctl.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)shmdt.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)shmget.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)msgctl.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)msgget.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)ctime.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)gmtime.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)gmtime_r.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)localtime.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)localtime_r.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)mktime.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)strftime.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)strptime.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)tzset.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)_time_t2tm.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)__time_tm.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)_time_mktime.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)_time_mktime_tzi.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)_time_localtime_tzi.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)utent.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)btowc.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)mbsinit.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)mbrtowc.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)wcrtomb.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)mbsnrtowcs.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)wcsnrtombs.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)iswalnum.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)iswlower.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)wctype.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)iswctype.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)towlower.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)towupper.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)fclose.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)fdopen.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)fopen.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)fseeko.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)getline.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)puts.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)rewind.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)setbuf.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)setvbuf.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)ungetc.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)printf.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)vprintf.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)fprintf.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)snprintf.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)dprintf.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)asprintf.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)sprintf.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)vasprintf.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)vdprintf.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)vsnprintf.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)popen.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)fopen64.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)freopen64.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)fseeko64.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)ftello64.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)_adjust_pos.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)_fopen.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)_stdio.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)_trans2r.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)_wcommit.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)_cs_funcs.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)_uintmaxtostr.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)open_memstream.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)vfprintf.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)_vfprintf_internal.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)_ppfs_init.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)_ppfs_prepargs.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)_ppfs_setargs.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)_ppfs_parsespec.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)scanf.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)sscanf.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)fscanf.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)vsscanf.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)clearerr.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)fflush.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)fgets.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)fputc.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)fputs.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)fread.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)fwrite.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)fflush_unlocked.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)fgetc_unlocked.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)fgets_unlocked.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)fileno_unlocked.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)fputc_unlocked.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)fputs_unlocked.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)fread_unlocked.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)fwrite_unlocked.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)memset.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)memmove.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)strlen.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)strcmp.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)memcmp.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)memcpy.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)memchr.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)strcat.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)strtok_r.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)strcspn.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)strstr.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)memrchr.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)strspn.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)strrchr.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)mempcpy.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)strcpy.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)strchrnul.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)strnlen.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)strncmp.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)strsep.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)strncpy.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)rawmemchr.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)strchr.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)stpcpy.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)__glibc_strerror_r.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)strtok.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)strncasecmp.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)strverscmp.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)strdup.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)strsignal.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)strcasecmp.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)strerror.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)strpbrk.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)dirname.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)__xpg_strerror_r.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)_string_syssigmsgs.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)strcasestr.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)strndup.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)_string_syserrmsgs.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)wcscmp.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)cfsetspeed.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)tcsendbrk.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)tcflush.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)tcgetsid.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)isatty.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)cfmakeraw.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)tcsetattr.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)tcsetpgrp.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)speed.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)tcgetattr.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)tcgetpgrp.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)tcdrain.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)ttyname.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)getservice.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)hostid.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)herror.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)if_index.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)getaddrinfo.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)ifaddrs.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)ntop.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)in6_addr.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)inet_aton.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)inet_addr.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)inet_ntoa.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)getnameinfo.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)gethostbyaddr_r.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)gethostbyname2_r.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)gethostbyaddr.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)gethostbyname.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)gethostbyname2.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)ns_netint.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)ns_parse.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)res_data.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)res_init.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)res_comp.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)ns_name.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)_res_state.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)accept.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)bind.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)connect.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)getpeername.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)getsockname.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)getsockopt.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)listen.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)recv.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)recvfrom.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)recvmsg.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)send.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)sendmsg.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)sendto.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)setsockopt.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)shutdown.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)socket.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)socketpair.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)opensock.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)ethers.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)ether_addr.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)allocrtsig.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)killpg.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)sigaddset.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)sigdelset.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)sigismem.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)sigjmp.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)signal.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)sigsetops.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)realloc.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)free.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)malloc.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)mallopt.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)calloc.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)abort.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)getenv.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)mkdtemp.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)realpath.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)rand.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)random.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)random_r.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)setenv.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)div.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)__uc_malloc.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)grantpt.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)unlockpt.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)ptsname.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)mkstemp64.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)mktemp.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)atol.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)strtol.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)strtoul.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)_stdlib_strto_l.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)qsort.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)qsort_r.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)bsearch.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)atoll.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)strtoll.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)strtoull.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)_stdlib_strto_ll.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)atof.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)_stdlib_mb_cur_max.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)strtod.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)__strtofpmax.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)__fp_range_check.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)exit.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)usershell.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)execl.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)getopt.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)execlp.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)execv.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)sleep.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)getlogin.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)execle.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)execvp.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)daemon.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)sysconf.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)usleep.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)__uClibc_main.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)fork.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)libc_multiple_threads.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)register-atfork.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)getpid.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)raise.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)jmp-unwind.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)libc-cancellation.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)libc-tls.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)libc-aeabi_read_tp.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)dl-support.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)system.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)libdl.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)resolve.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)s_cos.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)s_sin.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)w_atan2.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)w_exp.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)w_log.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)w_pow.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)w_sqrt.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)lowlevellock.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)clock_gettime.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)__syscall_error.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)__longjmp.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)lseek.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)xstatconv.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)open.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)sbrk.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)getdtablesize.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)gethostname.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)setregid.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)getdomainname.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)mremap.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)setrlimit.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)__syscall_fcntl.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)clock_getres.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)mmap.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)getrlimit.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)getdents64.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)tolower.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)toupper.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)__C_ctype_b.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)__C_ctype_tolower.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)__C_ctype_toupper.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)readdir.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)lockf.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)glob.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)tempname.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)h_errno.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)parse_config.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)nl_langinfo.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)asctime.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)asctime_r.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)wcsrtombs.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)getdelim.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)_READ.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)_WRITE.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)_fwrite.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)_rfill.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)_trans2w.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)_load_inttype.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)_store_inttype.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)_fpmaxtostr.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)fopencookie.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)vfscanf.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)__scan_cookie.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)__psfs_parse_spec.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)__psfs_do_numeric.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)fgetc.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)_memcpy.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)decoded.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)dnslookup.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)opennameservers.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)closenameservers.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)get_hosts_byaddr_r.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)get_hosts_byname_r.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)gethostbyname_r.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)dl-tls.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)dl-core.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)e_atan2.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)e_exp.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)e_log.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)e_pow.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)e_rem_pio2.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)e_sqrt.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)k_cos.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)k_rem_pio2.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)k_sin.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)s_atan.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)s_fabs.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)s_floor.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)s_scalbn.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)brk.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)getdents.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)stat.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)encodeh.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)decodeh.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)encodeq.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)read_etc_hosts_r.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)s_copysign.os
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a)encoded.os
+/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../lib/gcc/arm-training-linux-uclibcgnueabi/9.2.0/libgcc.a
+/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../lib/gcc/arm-training-linux-uclibcgnueabi/9.2.0/libgcc_eh.a
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../lib/gcc/arm-training-linux-uclibcgnueabi/9.2.0/libgcc_eh.a)unwind-arm.o
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../lib/gcc/arm-training-linux-uclibcgnueabi/9.2.0/libgcc_eh.a)libunwind.o
+(/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../lib/gcc/arm-training-linux-uclibcgnueabi/9.2.0/libgcc_eh.a)pr-support.o
+/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a
+/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../lib/gcc/arm-training-linux-uclibcgnueabi/9.2.0/libgcc.a
+/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../lib/gcc/arm-training-linux-uclibcgnueabi/9.2.0/libgcc_eh.a
+/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a
+attempt to open /opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../lib/gcc/arm-training-linux-uclibcgnueabi/9.2.0/crtend.o succeeded
+/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../lib/gcc/arm-training-linux-uclibcgnueabi/9.2.0/crtend.o
+attempt to open /opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/crtn.o succeeded
+/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/crtn.o/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../lib/gcc/arm-training-linux-uclibcgnueabi/9.2.0/../../../../arm-training-linux-uclibcgnueabi/bin/ld: /opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a(libdl.os): warning: definition of `_dl_pagesize' overriding common from /opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a(dl-support.os)
+/opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../lib/gcc/arm-training-linux-uclibcgnueabi/9.2.0/../../../../arm-training-linux-uclibcgnueabi/bin/ld: /opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a(libdl.os): warning: definition of `_dl_tls_static_size' overriding common from /opt/toolchains/arm-training-linux-uclibcgnueabi/bin/../arm-training-linux-uclibcgnueabi/sysroot/usr/lib/libc.a(libc-tls.os)
+
