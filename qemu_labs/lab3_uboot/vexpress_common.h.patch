@@ -1,0 +1,16 @@
+diff --git a/qemu_labs/opensource/u-boot-2020.10/include/configs/vexpress_common.h b/qemu_labs/opensource/u-boot-2020.10/include/configs/vexpress_common.h
+index b131480..82f9a16 100644
+--- a/qemu_labs/opensource/u-boot-2020.10/include/configs/vexpress_common.h
++++ b/qemu_labs/opensource/u-boot-2020.10/include/configs/vexpress_common.h
+@@ -238,4 +238,11 @@
+ /* Monitor Command Prompt */
+ #define CONFIG_SYS_CBSIZE		512	/* Console I/O Buffer Size */
+ 
++/* Set default network interface for booting TFTP/NFS */
++#define CONFIG_IPADDR   172.16.157.101
++#define CONFIG_NETMASK  255.255.255.0
++#define CONFIG_SERVERIP 172.16.157.100
++#define CONFIG_GATEWAYIP 172.16.157.1
++
++#define CONFIG_BOOTCOMMAND "tftp 0x61000000 zImage; tftp 0x62000000 vexpress-v2p-ca9.dtb; setenv bootargs 'root=/dev/nfs rdinit=/sbin/init earlyprintk=serial,ttyS0 console=ttyAMA0 ip=172.16.157.101:::::eth0 nfsroot=172.16.157.100:/home/bamboo/workspace/nfsroot/qemu_arm'; bootz 0x61000000 - 0x62000000"
+ #endif /* VEXPRESS_COMMON_H */

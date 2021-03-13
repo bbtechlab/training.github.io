@@ -2,20 +2,20 @@
 # 
 # Script to bring down and delete bridge br0 when QEMU exits 
 # 
-# Bring down enp0s3 and br0 
+# Bring down ens33 and br0 
 #
-/sbin/ifdown enp0s3
+/sbin/ifdown ens33
 /sbin/ifdown br0
 /sbin/ifconfig br0 down 
 # 
 # Delete the bridge
 #
-/usr/sbin/brctl delbr br0 
+sbin/brctl delbr br0 
 # 
-# bring up eth0 in "normal" mode 
+# bring up ens33 in "normal" mode 
 #
-/sbin/ifconfig enp0s3 -promisc
-/sbin/ifup enp0s3
+/sbin/ifconfig ens33 -promisc
+/sbin/ifup ens33
 #
 # delete the tap device
 #
