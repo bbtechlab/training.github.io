@@ -367,8 +367,8 @@ Create a qemu-ifdown locates in /etc
 # 
 /usr/sbin/service firestarter start
 ```
-Allow user to excutes scripts
-* $ sudo chmod +x /et/qemu-if*
+Allow user to excute scripts
+* $ sudo chmod +x /etc/qemu-if*
 ### Verify the booting system with ARM QEMU
 Load U-BOOT by using commands:
 
