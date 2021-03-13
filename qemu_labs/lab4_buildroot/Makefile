@@ -22,7 +22,7 @@ CROSS_COMPILE ?= arm-training-linux-uclibcgnueabi-
 CROSS_BUSYBOX ?= arm-training-linux-uclibcgnueabi-
 ARCH ?= arm
 TARGET_BOARD ?= vexpress
-CHIPSET ?= ca9x4
+CHIPSET ?= a9
 OPENSOURCE ?= $(TOP)/../opensource
 BUILDROOT ?= buildroot-2021.02
 OUT=$(TOP)/$(TARGET_BOARD)
@@ -60,13 +60,13 @@ BUILD_DATE: FORCE
 buildroot_config:
 	@echo Compiling u-boot ...........................
 	@mkdir -p $(OUT)/$(TARGET_BOARD)
-	#@cd $(OPENSOURCE)/$(BUILDROOT) && make ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) $(TARGET_BOARD)_$(CHIPSET)_defconfig
+	@cd $(OPENSOURCE)/$(BUILDROOT) && make ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) qemu_arm_$(TARGET_BOARD)_$(CHIPSET)_defconfig
 	@cd $(OPENSOURCE)/$(BUILDROOT) && make ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) menuconfig
 
 buildroot:
 	@echo Compiling ... $<
 	@cd $(OPENSOURCE)/$(BUILDROOT) && make ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE)
-	@cp $(OPENSOURCE)/$(BUILDROOT)/output/images/rootfs.tar $(OUT)
+	@cp $(OPENSOURCE)/$(BUILDROOT)/output/images/rootfs.tar.gz $(OUT)
 
 buildroot_clean:
 	@cd $(OPENSOURCE)/$(BUILDROOT) && make ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) clean
