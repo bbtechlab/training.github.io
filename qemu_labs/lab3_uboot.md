@@ -729,7 +729,7 @@ We got hello_staic binary from [lab1_toolchains](lab1_toolchains_crosstool-ng.md
 ```
 $ mkdir -p ~/workspace/nfsroot/qemu_arm/home
 $ cp lab1_toolchains/lab1_hello_static ~/workspace/nfsroot/qemu_arm/home/
-``
+```
 Back to ARM QEMU, we excute hello world application
 ```
 / # ls -al /home
