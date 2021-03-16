@@ -1,0 +1,24 @@
+diff --git a/qemu_labs/opensource/linux-5.5.5/arch/arm/boot/dts/vexpress-v2p-ca9.dts b/qemu_labs/opensource/linux-5.5.5/arch/arm/boot/dts/vexpress-v2p-ca9.dts
+index d796efa..c121ec3 100644
+--- a/qemu_labs/opensource/linux-5.5.5/arch/arm/boot/dts/vexpress-v2p-ca9.dts
++++ b/qemu_labs/opensource/linux-5.5.5/arch/arm/boot/dts/vexpress-v2p-ca9.dts
+@@ -365,4 +365,19 @@
+ 				<0 2 &gic 0 38 4>,
+ 				<0 3 &gic 0 39 4>;
+ 	};
++
++/* BBTECHLAB */
++    lab5_devicetree_childnode: lab5_devicetree_childnode {
++        cell-property = <1 2 3 4>;
++    };
++
++    lab5_devicetree_node {
++        compatible = "BBTECHLAB, lab5_devicetree";
++        number_property = <4321>;
++        string-property = "Hello World, from BBTECHLAB - lab5_devicetree !";
++        child-node1 {
++            child-property = <&lab5_devicetree_childnode>;
++        };
++    };
++/* ~BBTECHLAB */
+ };
