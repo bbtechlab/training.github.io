@@ -18,7 +18,7 @@ $ sudo apt install qemu-user qemu-system-arm build-essential git autoconf bison 
 
 ## Steps by Steps
 >Step 1: Modify device tree files to add nodes to **~/linux-5.5.5/arch/arm/boot/dts/vexpress-v2p-ca9.dts**
-```
+```diff
 diff --git a/qemu_labs/opensource/linux-5.5.5/arch/arm/boot/dts/vexpress-v2p-ca9.dts b/qemu_labs/opensource/linux-5.5.5/arch/arm/boot/dts/vexpress-v2p-ca9.dts
 index d796efa..c121ec3 100644
 --- a/qemu_labs/opensource/linux-5.5.5/arch/arm/boot/dts/vexpress-v2p-ca9.dts
