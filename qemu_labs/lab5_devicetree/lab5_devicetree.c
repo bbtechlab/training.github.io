@@ -95,6 +95,8 @@ lab5_devtree_probe(struct platform_device *drv)
     const char *pucString = NULL;
     int iVal = 0;
     struct device_node *pDevNode = drv->dev.of_node;
+    struct device_node *pChildNode, *pOthers;
+    int iArr[4] = {0};
 
     printk("++ Enter lab5_devtree_probe\n");
     
@@ -109,6 +111,18 @@ lab5_devtree_probe(struct platform_device *drv)
         printk("Dummy number property from DTB: %d", iVal);
     }
 
+    for_each_child_of_node(pDevNode, pChildNode) 
+    {
+        pOthers = of_parse_phandle(pChildNode, "child-property", 0);
+        if(!pOthers)
+        {
+            goto exit;
+        }
+        of_property_read_u32_array(pOthers, "cell-property", iArr, 4);
+        printk("Dummy cell-property from child node: [%d, %d, %d, %d]\n", iArr[0], iArr[1], iArr[2], iArr[3]);
+    }
+
+exit:
     printk("-- Exit lab5_devtree_probe\n");
 
     return 0;
