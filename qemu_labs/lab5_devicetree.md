@@ -234,6 +234,55 @@ lab5_devtree           16384  0
 Trying to remove DTB compatible name: lab5_devicetree_node
 -- Exit lab5_devtree_remove
 ```
+Now we are trying to parse the child node, apply codes below
+```diff
+----------------- qemu_labs/lab5_devicetree/lab5_devicetree.c -----------------
+index b4a98e3..6f5bb7c 100644
+@@ -95,6 +95,8 @@ lab5_devtree_probe(struct platform_device *drv)
+     const char *pucString = NULL;
+     int iVal = 0;
+     struct device_node *pDevNode = drv->dev.of_node;
++    struct device_node *pChildNode, *pOthers;
++    int iArr[4] = {0};
+ 
+     printk("++ Enter lab5_devtree_probe\n");
+     
+@@ -109,6 +111,18 @@ lab5_devtree_probe(struct platform_device *drv)
+         printk("Dummy number property from DTB: %d", iVal);
+     }
+ 
++    for_each_child_of_node(pDevNode, pChildNode) 
++    {
++        pOthers = of_parse_phandle(pChildNode, "child-property", 0);
++        if(!pOthers)
++        {
++            goto exit;
++        }
++        of_property_read_u32_array(pOthers, "cell-property", iArr, 4);
++        printk("Dummy cell-property from child node: [%d, %d, %d, %d]\n", iArr[0], iArr[1], iArr[2], iArr[3]);
++    }
++
++exit:
+     printk("-- Exit lab5_devtree_probe\n");
+ 
+     return 0;
+```
+Compile & copy lab5_Devtree.ko to nfsroot, verify it with QEMU and we shall get the result as below
+```
+Welcome to BBTECHLAB - Enjoy !
+bbtechlab login: root
+# 
+# 
+# cd /home/
+# insmod lab5_devtree.ko 
+lab5_devtree: loading out-of-tree module taints kernel.
+++ Enter lab5_devtree_probe
+Dummy DTB compatible name: lab5_devicetree_node
+Dummy string property from DTB: Hello World, from BBTECHLAB - lab5_devicetree !
+Dummy number property from DTB: 4321
+Dummy cell-property from child node: [1, 2, 3, 4]
+-- Exit lab5_devtree_probe
+```
 ## References
 * [device-tree-dummies pdf](https://events.static.linuxfound.org/sites/events/files/slides/petazzoni-device-tree-dummies.pdf)
 * https://elinux.org/Device_Tree_Usage
