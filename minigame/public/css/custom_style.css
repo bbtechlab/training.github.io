@@ -1,0 +1,30 @@
+
+body {
+    background-color: #f8f9fa;
+}
+
+.custom_comment {
+    text-align: center;
+    padding: 5px;
+    background-color: #b1d2f2;
+    border: 0px solid #6388aa;
+    color: #213466;
+    margin-bottom: 15px;
+}
+
+.custom_backgroundarea {
+    width: auto;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #eee;
+    border-radius: 12px;
+}
+
+.custom_div_style {
+    padding: 10px;
+    margin: 10px auto;
+    background-color: #fbfbfb;
+    box-shadow: 2px 2px 4px #aaa;
+    border-radius: 8px;
+    border: 1px solid #777;
+}
